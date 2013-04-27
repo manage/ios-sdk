@@ -86,7 +86,7 @@ popup.delegate = self;
 ```
 
 
-Examples include Stoping music, pausing levels, etc.
+Examples include: stopping music, pausing levels, etc.
 
 ### Caching 
 
