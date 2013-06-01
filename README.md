@@ -3,24 +3,28 @@
 ## Ads
 
 ### Adding the Library 
-Add the ManageSDK.framework file to the project and add to the Link Binary With Libraries Panel under the projects Targets -> Build Phases
+Add the AppSponserSDK.framework file to the project and add to the Link Binary With Libraries Panel under the projects Targets -> Build Phases
 Also add the **AdSupport** framework to the project.
 
 Use the following import where needed:
 
 ```objective-c
-#import <ManageSDK/MNGPopupAdController.h>
+#import <AppSponserSDK/ASPopupAdController.h>
 ```
+
+Be sure to add all the images in the "AppSponser Images" folder to your project.
+These contain the frames and close buttons. 
+Feel free to replace them with similiarly sized images to tailor the experience for your application. 
 
 ### Interface 
 ```objective-c
-@interface MNGPopupAdController : UIViewController
+@interface ASPopupAdController : UIViewController
 @property (nonatomic, strong) NSString *zoneId;
 @property (nonatomic, weak) UIViewController *parentController;
-@property (nonatomic, weak) id<MNGPopupAdDelegate> delegate;
+@property (nonatomic, weak) id<ASPopupAdDelegate> delegate;
 @property (nonatomic, assign)BOOL testMode;
 
--(MNGPopupAdController*)initWithZoneId:(NSString*)zoneId;
+-(ASPopupAdController*)initWithZoneId:(NSString*)zoneId;
 -(void)load;
 -(void)presentAd;
 ```
@@ -28,7 +32,7 @@ Use the following import where needed:
 ### Presenting an ad 
 ```objective-c
 NSString *zoneId = @"XXXXXXXXXXXXXXXXXXXXXX";
-MNGPopupAdController *popupAd = [[MNGPopupAdController alloc] initWithZoneId:zoneId];
+ASPopupAdController *popupAd = [[ASPopupAdController alloc] initWithZoneId:zoneId];
 [popupAd presentAd];
 ```
 
@@ -36,7 +40,7 @@ The ad gets displayed in whatever orientation the ad is at the time it is loaded
 
 The zone id can be found in [Setting up an Ad Campaign](#setting-up-an-ad-campaign).
 
-Please note: the MNGPopupAd does not need to be added to the controller hierarchy. It overlays whatever the top controller is at the time the ad is ready to be displayed.
+Please note: the ASPopupAd does not need to be added to the controller hierarchy. It overlays whatever the top controller is at the time the ad is ready to be displayed.
 
 To ignore frequency caps set to a particular ad, enable testMode by adding the following after initializing the ad.
 ```objective-c
@@ -51,7 +55,7 @@ Place the ad presentation code (shown above) in the applicationDidBecomeActive m
 
 ### Delegate 
 ```objective-c
-@protocol MNGPopupAdDelegate <NSObject> 
+@protocol ASPopupAdDelegate <NSObject> 
 -(void)popoverWillAppear;
 -(void)popoverWillDisappear;
 @optional -(void)popoverDidFailToLoadWithError:(NSError*)error;
@@ -59,14 +63,14 @@ Place the ad presentation code (shown above) in the applicationDidBecomeActive m
 ```
 
 Hook into the delegate to manage events before and after the popovers appear.
-Add <MNGPopupAdDelegate> to your class and set the popupAdController delegate to self.
+Add <ASPopupAdDelegate> to your class and set the popupAdController delegate to self.
 ```objective-c
-@interface YourViewController () <MNGPopupAdDelegate>
+@interface YourViewController () <ASPopupAdDelegate>
 
 // ...
 
 // Your initialization code
-MNGPopupAdController *popup = [[MNGPopupAdController alloc] initWithZoneId:@"xxxxxxxxxxxxxxxxxxxxxx"];
+ASPopupAdController *popup = [[ASPopupAdController alloc] initWithZoneId:@"xxxxxxxxxxxxxxxxxxxxxx"];
 popup.delegate = self;
 
 // ....
@@ -94,7 +98,7 @@ The load method caches the ad for its current orientation.
 The ad will be cached relative to the current orientation of the screen.
 
 ```objective-c
-_popup = [[MNGPopupAdController alloc] initWithZoneId:@"xxxxxxxxxxxxxxxxxxxxxx"];
+_popup = [[ASPopupAdController alloc] initWithZoneId:@"xxxxxxxxxxxxxxxxxxxxxx"];
 [_popup load];
 
 // Somewhere later
@@ -104,7 +108,7 @@ _popup = [[MNGPopupAdController alloc] initWithZoneId:@"xxxxxxxxxxxxxxxxxxxxxx"]
 
 ### Setting up an Ad Campaign 
 
-Go to RTB.com and login.
+Go to appsponser.com and login.
 
 From "My Apps", click "Create a New App" and fill in all required information.
 
