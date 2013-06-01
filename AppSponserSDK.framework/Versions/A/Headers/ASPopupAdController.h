@@ -1,5 +1,5 @@
 //
-//  MNGPopupAdController.h
+//  ASPopupAdController.h
 //  ManageSDK
 //
 //  Created by Manage on 3/20/13.
@@ -8,20 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol MNGPopupAdDelegate <NSObject>
+@protocol ASPopupAdDelegate <NSObject>
 -(void)popoverWillAppear;
 -(void)popoverWillDisappear;
 @optional
 -(void)popoverDidFailToLoadWithError:(NSError*)error;
 @end
 
-@interface MNGPopupAdController : UIViewController
+@interface ASPopupAdController : UIViewController
 @property (nonatomic, strong) NSString *zoneId;
 @property (nonatomic, weak) UIViewController *parentController;
-@property (nonatomic, weak) id<MNGPopupAdDelegate> delegate;
+@property (nonatomic, weak) id<ASPopupAdDelegate> delegate;
 @property (nonatomic, assign)BOOL testMode;
 
--(MNGPopupAdController*)initWithZoneId:(NSString*)adId;
+-(ASPopupAdController*)initWithZoneId:(NSString*)adId;
 
 /*
  * Preloads the ad.

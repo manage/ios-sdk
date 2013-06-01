@@ -1,5 +1,5 @@
 //
-//  MNGTracker.h
+//  ASTracker.h
 //  ManageSDK
 //
 //  Created by Manage on 4/5/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MNGTracker : NSObject
+@interface ASTracker : NSObject
 @property(nonatomic, strong)NSString* userId;
 @property(nonatomic, strong)NSDictionary* parameters;
 
@@ -24,7 +24,7 @@
 
 @end
 
-NSString *MNGSHA1Digest(NSString *string);
-BOOL MNGAdvertisingTrackingEnabled();
-NSString *MNGAdvertisingIdentifier();
+NSString *ASSHA1Digest(NSString *string);
+BOOL ASAdvertisingTrackingEnabled();
+NSString *ASAdvertisingIdentifier();
 
